@@ -4,26 +4,35 @@ using Variables.Math;
 
 namespace Variables
 {
+    public enum ShippingMethod
+    {
+        RegularAirMail = 1,
+        RegisteredAirMail = 2,
+        Express = 3
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            var firstName = "Mosh";
-            var lastName = "Moshykins";
+            var method = ShippingMethod.Express;
+            Console.WriteLine((int)method);
+            //prints 3
 
-            var fullName = firstName + " " + lastName;
+            var methodId = 3;
+            Console.WriteLine((ShippingMethod)methodId);
+            //prints Express
 
-            var myFullName = string.Format("My name is {0} {1}", firstName, lastName);
-            var names = new string[3] { "John", "Jack", "Mary" };
-            var formattedNames = string.Join(",", names);
-            Console.WriteLine(formattedNames);
+            Console.WriteLine(method.ToString());
+            //prints Express
 
-            //var text = "Hi John\nLook into the following paths\nc:\\folder1\\folder2\nc:folder3\\";
-            var text = @"Hi John
-Look into the following paths
-c:\folder1\folder2
-c:\folder3\\";
-            Console.WriteLine(text);
+            Console.WriteLine(method);
+            //prints Express, default of Cons.WrLine is toString()
+
+            var methodName = "Express";
+            var shippingMethod = (ShippingMethod)Enum.Parse(typeof(ShippingMethod), methodName);
+            Console.WriteLine(shippingMethod);
+
+
         }
     }
 }
