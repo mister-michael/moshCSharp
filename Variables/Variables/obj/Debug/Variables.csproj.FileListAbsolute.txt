@@ -1,0 +1,6 @@
+/Users/d.a.n.k.e./postGradWorkspace/moshCSharp/Variables/Variables/obj/Debug/Variables.csprojAssemblyReference.cache
+/Users/d.a.n.k.e./postGradWorkspace/moshCSharp/Variables/Variables/obj/Debug/Variables.csproj.CoreCompileInputs.cache
+/Users/d.a.n.k.e./postGradWorkspace/moshCSharp/Variables/Variables/bin/Debug/Variables.exe
+/Users/d.a.n.k.e./postGradWorkspace/moshCSharp/Variables/Variables/bin/Debug/Variables.pdb
+/Users/d.a.n.k.e./postGradWorkspace/moshCSharp/Variables/Variables/obj/Debug/Variables.exe
+/Users/d.a.n.k.e./postGradWorkspace/moshCSharp/Variables/Variables/obj/Debug/Variables.pdb
