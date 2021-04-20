@@ -8,23 +8,22 @@ namespace Variables
     {
         static void Main(string[] args)
         {
-            var numbers = new int[3] { 2, 2, 3 };
-            numbers[0] = 1;
+            var firstName = "Mosh";
+            var lastName = "Moshykins";
 
-            Console.WriteLine(numbers[0]);
-            Console.WriteLine(numbers[1]);
-            Console.WriteLine(numbers[2]);
+            var fullName = firstName + " " + lastName;
 
-            var flags = new bool[3] { true, true, false };
-            flags[0] = true;
+            var myFullName = string.Format("My name is {0} {1}", firstName, lastName);
+            var names = new string[3] { "John", "Jack", "Mary" };
+            var formattedNames = string.Join(",", names);
+            Console.WriteLine(formattedNames);
 
-            Console.WriteLine(flags[0]);
-            Console.WriteLine(flags[1]);
-            Console.WriteLine(flags[2]);
-
-            var names = new string[3] { "Jack", "John", "Mary" };
-
-            Console.WriteLine(names[1]);
+            //var text = "Hi John\nLook into the following paths\nc:\\folder1\\folder2\nc:folder3\\";
+            var text = @"Hi John
+Look into the following paths
+c:\folder1\folder2
+c:\folder3\\";
+            Console.WriteLine(text);
         }
     }
 }
