@@ -31,6 +31,7 @@ namespace Variables
             var methodName = "Express";
             var shippingMethod = (ShippingMethod)Enum.Parse(typeof(ShippingMethod), methodName);
             Console.WriteLine(shippingMethod);
+            //prints Express
 
 
         }
