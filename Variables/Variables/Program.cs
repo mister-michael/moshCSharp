@@ -9,77 +9,68 @@ namespace Variables
     {
         static void Main(string[] args)
         {
-            Console.Write("What's the speed limit?\nAnswer: ");
-            var speedLimit = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("How fast are you going?\nAnswer: ");
-            var speedOfCar = Convert.ToInt32(Console.ReadLine());
-
-            var speedOver = speedOfCar - speedLimit;
-
-            int mphPerDemerit = 5;
-
-            var demeritPoints = speedOver / mphPerDemerit;
-
-            if (speedOfCar < speedLimit) Console.WriteLine("Speed up slow poke!");
-            else
+            Console.WriteLine("Enter a series of numbers seperated by commas.");
+            var input = Console.ReadLine();
+            var numbers = input.Split(',');
+            var final = 0;
+            foreach (var str in numbers)
             {
-                if (demeritPoints < 12)
-                    Console.WriteLine("You have " + demeritPoints + " points.");
-                else
-                    Console.WriteLine("Gimme dat license, you nutter.");
-
+                var number = Convert.ToInt32(str);
+                if (number > final)
+                    final = number;
             }
+            Console.WriteLine(final);
         }
 
         public void Exercise1()
         {
-            Console.WriteLine("Pick a number 1 to 10.");
-            var input = Console.ReadLine();
-            var number = Convert.ToInt32(input);
-            if (number >= 1 && number <= 10)
-                Console.WriteLine("Yeah boyeeeee.");
-            else
-                Console.WriteLine("Nawww dude.");
+            var count = 0;
+            for (var i = 0; i < 100; i++)
+                if (i % 2 == 0)
+                    count++;
+            Console.WriteLine("There are {0} even numbers", count);
         }
 
         public void Exercise2()
         {
-            Console.WriteLine("Pick a number: ");
-            var n1 = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Pick another number: ");
-            var n2 = Convert.ToInt32(Console.ReadLine());
-
-            var answer = (n1 > n2) ? n1 : n2;
-            Console.WriteLine(answer + " is the bigger number.");
+            var total = 0;
+            while (true)
+            {
+                Console.Write("Enter a number: ");
+                var input = Console.ReadLine();
+                if (input.ToLower() == "ok")
+                    break;
+                total += Convert.ToInt32(input);
+            }
+            Console.WriteLine("The sum is {0}", total);
         }
+
         public void Exercise3()
         {
-            Console.Write("Length in pixels: ");
-            var length = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Width in pixels: ");
-            var width = Convert.ToInt32(Console.ReadLine());
-
-            var answer = (length < width) ? "landscape" : "portrait";
-            Console.WriteLine("The image is a " + answer);
-
-            //MOSH'S ANSWER
-            //Console.Write("Image width: ");
-            //var width = Convert.ToInt32(Console.ReadLine());
-
-            //Console.Write("Image height: ");
-            //var height = Convert.ToInt32(Console.ReadLine());
-
-            //var orientation = width > height ? ImageOrientation.Landscape : ImageOrientation.Portrait;
-            //Console.WriteLine("Image orientation is " + orientation);
+            Console.Write("Enter a number to compute: ");
+            var input = Convert.ToInt32(Console.ReadLine());
+            for (var i = input - 1; i > 0; i--)
+                input *= i;
+            Console.WriteLine(input);
         }
 
-        //public enum ImageOrientation
-        //{
-        //    Landscape,
-        //    Portrait
-        //}
+        public void Exercise4()
+        {
+            var number = new Random().Next(1, 10);
+            Console.WriteLine("The number is " + number);
+
+            for (var i = 4; i > 0; i--)
+            {
+                Console.Write("Guess a number: ");
+                var input = Convert.ToInt32(Console.ReadLine());
+                if (input == number)
+                {
+                    Console.WriteLine("You guessed it!");
+                    break;
+                }
+            }
+
+            Console.WriteLine("The number is {0}", number);
+        }
     }
 }
