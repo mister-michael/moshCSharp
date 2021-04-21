@@ -4,34 +4,30 @@ using Variables.Math;
 
 namespace Variables
 {
-    public class Guy
-    {
-        public int Age;
-    }
-
     class Program
     {
-       
         static void Main(string[] args)
         {
-            var number = 1;
-            Increment(number);
-            Console.WriteLine(number);
-            //prints 1
+            bool isGoldCustomer = true;
 
-            var guy = new Guy() { Age = 20 };
-            MakeOld(guy);
-            Console.WriteLine(guy.Age);
+            //float price;
 
-            
-        }
-        public static void Increment(int number)
-        {
-            number += 10;
-        }
-        public static void MakeOld(Guy guy)
-        {
-            guy.Age += 10;
+            //if (isGoldCustomer)
+            //    price = 19.95f;
+            //else
+            //    price = 29.95f;
+
+            float price = (isGoldCustomer) ? 19.95f : 29.95f;
+            Console.WriteLine(price);
+
+            //int hour = 10;
+
+            //if
+            //    (hour >= 0 && hour < 12) Console.WriteLine("It's morning.");
+            //else if
+            //    (hour >= 12 && hour < 18) Console.WriteLine("It's afternoon.");
+            //else
+            //    Console.WriteLine("It's afternoon.");
         }
     }
 }

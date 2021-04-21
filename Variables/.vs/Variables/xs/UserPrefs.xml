@@ -1,24 +1,19 @@
 ﻿<Properties StartupConfiguration="{E51D037C-994D-4A5A-8A7C-15F7391C3AF5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Variables/Math/Calculator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Variables/Program.cs">
     <Files>
-      <File FileName="Variables/Program.cs" Line="5" Column="2" />
-      <File FileName="Variables/EmptyClass.cs" Line="2" Column="1" />
-      <File FileName="Variables/Math/Calculator.cs" Line="8" Column="29" />
+      <File FileName="Variables/Program.cs" Line="13" Column="6" />
+      <File FileName="Variables/Math/Calculator.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Variables" expanded="True">
             <Node name="Variables" expanded="True">
-              <Node name="Math" expanded="True">
-                <Node name="Calculator.cs" selected="True" />
-              </Node>
+              <Node name="Math" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
