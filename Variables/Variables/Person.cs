@@ -1,7 +1,7 @@
 ﻿using System;
-using Variables.Math;
+using Lists.Math;
 
-namespace Variables
+namespace Lists
 {
     public class Person
     {

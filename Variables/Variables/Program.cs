@@ -1,76 +1,119 @@
 ﻿using System;
-using Variables.Math;
+using Lists.Math;
+using System.Collections.Generic;
 
 
-namespace Variables
+namespace Lists
 {
     
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a series of numbers seperated by commas.");
-            var input = Console.ReadLine();
-            var numbers = input.Split(',');
-            var final = 0;
-            foreach (var str in numbers)
+            Console.Write("Enter five numbers seperated by commas: ");
+            var input = Console.ReadLine().Split(',');
+            var numberList = new List<int>();
+            var smallests = new List<int>();
+
+            foreach (var number in input)
+                numberList.Add(Convert.ToInt32(number));
+
+            if (numberList.Count != 5)
+                Console.WriteLine("Try again, five numbers only");
+
+            else
             {
-                var number = Convert.ToInt32(str);
-                if (number > final)
-                    final = number;
+                numberList.Sort();
+                for (var i = 0; i < 3; i++)
+                    smallests.Add(numberList[i]);
             }
-            Console.WriteLine(final);
+
+            foreach (var number in smallests)
+                Console.WriteLine(number);
         }
 
         public void Exercise1()
         {
-            var count = 0;
-            for (var i = 0; i < 100; i++)
-                if (i % 2 == 0)
-                    count++;
-            Console.WriteLine("There are {0} even numbers", count);
+            var names = new List<string>();
+
+            while (true)
+            {
+                Console.Write("Enter a name: ");
+                var input = Console.ReadLine();
+                if (names.Contains(input))
+                {
+                    break;
+                }
+                names.Add(input);
+            }
+
+            if (names.Count > 2)
+                Console.WriteLine("{0}, {1} and {2} other people liked your post.", names[0], names[1], names.Count - 2);
+            else if (names.Count == 2)
+                Console.WriteLine("{0} and {1} liked your post.", names[0], names[1]);
+            else if (names.Count == 1)
+                Console.WriteLine("{0} liked your post.", names[0]);
+            else
+                Console.WriteLine("No one likes your or your post.");
         }
 
         public void Exercise2()
         {
-            var total = 0;
-            while (true)
-            {
-                Console.Write("Enter a number: ");
-                var input = Console.ReadLine();
-                if (input.ToLower() == "ok")
-                    break;
-                total += Convert.ToInt32(input);
-            }
-            Console.WriteLine("The sum is {0}", total);
+            Console.Write("What's your name: ");
+            var name = Console.ReadLine();
+
+            var array = new char[name.Length];
+
+            for (var i = name.Length; i > 0; i--)
+                array[name.Length - i] = name[i - 1];
+
+            var reversed = new string(array);
+            Console.WriteLine(reversed);
         }
 
         public void Exercise3()
         {
-            Console.Write("Enter a number to compute: ");
-            var input = Convert.ToInt32(Console.ReadLine());
-            for (var i = input - 1; i > 0; i--)
-                input *= i;
-            Console.WriteLine(input);
+            var newList = new List<int>();
+
+            while (newList.Count < 5)
+            {
+                Console.Write("Enter a unique number: ");
+                var input = Convert.ToInt32(Console.ReadLine());
+                if (newList.Contains(input))
+                {
+                    Console.WriteLine("You already entered" + input);
+                    continue;
+                }
+                newList.Add(input);
+            }
+            newList.Sort();
+            foreach (var number in newList)
+                Console.WriteLine(number);
         }
 
         public void Exercise4()
         {
-            var number = new Random().Next(1, 10);
-            Console.WriteLine("The number is " + number);
+            var numbers = new List<int>();
 
-            for (var i = 4; i > 0; i--)
+            while (true)
             {
-                Console.Write("Guess a number: ");
-                var input = Convert.ToInt32(Console.ReadLine());
-                if (input == number)
-                {
-                    Console.WriteLine("You guessed it!");
+                Console.Write("Enter a number: ");
+                var input = Console.ReadLine();
+                if (input.ToLower() == "quit")
                     break;
-                }
+                else
+                    numbers.Add(Convert.ToInt32(input));
             }
 
-            Console.WriteLine("The number is {0}", number);
+            var unique = new List<int>();
+            foreach (var number in numbers)
+            {
+                if (!unique.Contains(number))
+                    unique.Add(number);
+            }
+            unique.Sort();
+            foreach (var number in unique)
+                Console.WriteLine(number);
         }
     }
 }
