@@ -1,76 +1,168 @@
 ﻿using System;
-using Variables.Math;
+using Lists.Math;
+using System.Collections.Generic;
 
 
-namespace Variables
+namespace Lists
 {
-    
+
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a series of numbers seperated by commas.");
+            /// <summary>
+            /// Write a program and ask the user to enter a time value in the 24-hour time format (e.g. 19:00).
+            /// A valid time should be between 00:00 and 23:59. If the time is valid, display "Ok"; otherwise, 
+            /// display "Invalid Time". If the user doesn't provide any values, consider it as invalid time. 
+            /// </summary>
+
+            Console.WriteLine("Please enter a time between 00:00 and 23:59: ");
+
             var input = Console.ReadLine();
-            var numbers = input.Split(',');
-            var final = 0;
-            foreach (var str in numbers)
+
+            if (String.IsNullOrWhiteSpace(input))
             {
-                var number = Convert.ToInt32(str);
-                if (number > final)
-                    final = number;
+                Console.WriteLine("Invalid");
+                return;
             }
-            Console.WriteLine(final);
+
+            var time = input.Split(':');
+
+            if (time.Length != 2)
+            {
+                Console.WriteLine("Invalid Time");
+                return;
+            }
+
+            try
+            {
+                var hour = Convert.ToInt32(time[0]);
+                var minute = Convert.ToInt32(time[1]);
+
+                if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59)
+                    Console.WriteLine("Ok");
+                else
+                    Console.WriteLine("Invalid");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid");
+            }
+
+
+
         }
 
+        /// <summary>
+        /// Write a program and ask the user to enter a few numbers separated by a hyphen. Work out 
+        /// if the numbers are consecutive. For example, if the input is "5-6-7-8-9" or "20-19-18-17-16", 
+        /// display a message: "Consecutive"; otherwise, display "Not Consecutive".
+        /// </summary>
         public void Exercise1()
         {
+            Console.WriteLine("Enter a string of numbers\nseperated by dashes\nex. 1-2-5-4-3");
+            var input = Console.ReadLine();
+            var numbers = new List<int>();
+
+            foreach (var number in input.Split('-'))
+                numbers.Add(Convert.ToInt32(number));
+
+            numbers.Sort();
+
             var count = 0;
-            for (var i = 0; i < 100; i++)
-                if (i % 2 == 0)
+
+
+            for (var i = 0; i < numbers.Count - 1; i++)
+            {
+                if (Convert.ToInt32(numbers[i]) == Convert.ToInt32(numbers[i + 1]) - 1)
                     count++;
-            Console.WriteLine("There are {0} even numbers", count);
-        }
-
-        public void Exercise2()
-        {
-            var total = 0;
-            while (true)
-            {
-                Console.Write("Enter a number: ");
-                var input = Console.ReadLine();
-                if (input.ToLower() == "ok")
-                    break;
-                total += Convert.ToInt32(input);
-            }
-            Console.WriteLine("The sum is {0}", total);
-        }
-
-        public void Exercise3()
-        {
-            Console.Write("Enter a number to compute: ");
-            var input = Convert.ToInt32(Console.ReadLine());
-            for (var i = input - 1; i > 0; i--)
-                input *= i;
-            Console.WriteLine(input);
-        }
-
-        public void Exercise4()
-        {
-            var number = new Random().Next(1, 10);
-            Console.WriteLine("The number is " + number);
-
-            for (var i = 4; i > 0; i--)
-            {
-                Console.Write("Guess a number: ");
-                var input = Convert.ToInt32(Console.ReadLine());
-                if (input == number)
+                else
                 {
-                    Console.WriteLine("You guessed it!");
+                    Console.WriteLine("Not Consecutive");
                     break;
                 }
-            }
+                if (count == numbers.Count - 1)
+                    Console.WriteLine("Consecutive");
 
-            Console.WriteLine("The number is {0}", number);
+            }
+            //MOSH'S SOLUTION
+
+            //Console.Write("Enter a few numbers (eg 1-2-3-4): ");
+            //var input = Console.ReadLine();
+
+            //var numbers = new List<int>();
+            //foreach (var number in input.Split('-'))
+            //    numbers.Add(Convert.ToInt32(number));
+
+            //numbers.Sort();
+
+            //var isConsecutive = true;
+            //for (var i = 1; i < numbers.Count; i++)
+            //{
+            //    if (numbers[i] != numbers[i - 1] + 1)
+            //    {
+            //        isConsecutive = false;
+            //        break;
+            //    }
+            //}
+
+        }
+        /// <summary>
+        /// Write a program and ask the user to enter a few numbers separated by a hyphen. If the user simply 
+        /// presses Enter without supplying an input, exit immediately; otherwise, check to see if there are 
+        /// any duplicates. If so, display "Duplicate" on the console.
+        /// </summary>
+        public void Exercise2()
+        {
+            Console.Write("Write a few numbers seperated by a hyphen: ");
+            var input = Console.ReadLine();
+            if (input.Length == 0) return;
+
+            var numbers = new List<int>();
+
+            foreach (var number in input.Split('-'))
+                numbers.Add(Convert.ToInt32(number));
+
+            var uniques = new List<int>();
+            var isDuplicated = false;
+
+            foreach (var number in numbers)
+                if (!uniques.Contains(number))
+                    uniques.Add(number);
+                else
+                {
+                    isDuplicated = true;
+                    Console.WriteLine("Duplicate");
+                    break;
+                }
+
+            if (isDuplicated == false) Console.WriteLine("No Duplicates");
+
+            //Console.Write("Enter a few numbers (eg 1-2-3-4): ");
+            //var input = Console.ReadLine();
+
+            //if (String.IsNullOrWhiteSpace(input))
+            //    return;
+
+            //var numbers = new List<int>();
+            //foreach (var number in input.Split('-'))
+            //    numbers.Add(Convert.ToInt32(number));
+
+            //var uniques = new List<int>();
+            //var includesDuplicates = false;
+            //foreach (var number in numbers)
+            //{
+            //    if (!uniques.Contains(number))
+            //        uniques.Add(number);
+            //    else
+            //    {
+            //        includesDuplicates = true;
+            //        break;
+            //    }
+            //}
+
+            //if (includesDuplicates)
+            //    Console.WriteLine("Duplicate");
         }
     }
 }

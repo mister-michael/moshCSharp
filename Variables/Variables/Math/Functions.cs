@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Variables.Math
+namespace Lists.Math
 {
     public class Functions
     {
