@@ -27,5 +27,10 @@ namespace Intermediate
             this.duration = this.endTime - this.startTime;
             this.total += this.duration;
         }
+
+        public void RunStopwatch()
+        {
+           
+        }
     }
 }
