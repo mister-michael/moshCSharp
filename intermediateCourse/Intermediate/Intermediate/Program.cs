@@ -2,33 +2,8 @@
 
 namespace Intermediate
 {
-    class StopWatch
+    class Program
     {
-        private DateTime startTime;
-        private DateTime endTime;
-        private TimeSpan duration;
-        private string startOrStop = "start";
-        private bool running = false;
-        private TimeSpan total;
-
-        public void Start()
-        {
-            this.startTime = DateTime.Now;
-            this.startOrStop = "stop";
-            this.running = true;
-            Console.WriteLine(this.startTime);
-        }
-
-        public void Stop()
-        {
-            this.endTime = DateTime.Now;
-            this.startOrStop = "start";
-            this.running = false;
-            this.duration = this.endTime - this.startTime;
-            this.total += this.duration;
-        }
-
-
         public static void Main(string[] args)
         {
             var stopwatch = new StopWatch();
