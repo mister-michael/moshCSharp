@@ -3,62 +3,100 @@ using System.Collections.Generic;
 
 namespace Intermediate
 {
-    class Stack
+    class Program
     {
-        private List<object> _list = new List<object>();
-
-        
-        public void Push(object obj)
+        public static void Main(string[] args)
         {
-            if (obj == null)
-                throw new InvalidOperationException("You can't pass a null object");
+            var workflow = new Workflow();
+            workflow.Add(new StatusChange());
+            workflow.Add(new UploadVideo());
+            workflow.Add(new WebServiceCall());
+            workflow.Add(new SendEmail());
 
-            _list.Add(obj);
-
+            var engine = new WorkflowEngine();
+            engine.Run(workflow);
         }
 
-        public object Pop()
+        public interface ITask
         {
-            if (_list.Count == 0)
-                throw new InvalidOperationException("list is empty");
-
-            object toReturn = _list[_list.Count - 1];
-
-            var listElements = _list.Count;
-
-            _list.RemoveAt(listElements - 1);
-
-            return toReturn;
-
+            void Execute();
         }
 
-        public void Clear()
+        public interface IWorkflow
         {
-            while(_list.Count < 0)
+            void Add(ITask task);
+            void Remove(ITask task);
+            IEnumerable<ITask> GetTasks();
+        }
+
+        public class Workflow : IWorkflow
+        {
+            private List<ITask> _tasks;
+
+            public Workflow()
             {
-                _list.RemoveAt(0);
+                _tasks = new List<ITask>();
+            }
+
+            public void Add(ITask task)
+            {
+                _tasks.Add(task);
+            }
+
+            public void Remove(ITask task)
+            {
+                _tasks.Remove(task);
+            }
+
+            public IEnumerable<ITask> GetTasks()
+            {
+                return _tasks;
             }
         }
 
-        public static void Main(string[] args)
+        class StatusChange : ITask
         {
-            var stack = new Stack();
-
-            int ini = 0;
-            int max = 10;
-
-            for (var i = ini; i <= max; i++)
-                stack.Push(i);
-
-            for (var i = ini; i <= max; i++)
-                Console.WriteLine(stack.Pop());
-
-            stack.Clear();
-
-            Console.WriteLine("Counht:" + stack._list.Count);
-
-            Console.ReadLine();
+            public void Execute()
+            {
+                Console.WriteLine("Status is changed...");
+            }
         }
+
+        class UploadVideo : ITask
+        {
+            public void Execute()
+            {
+                Console.WriteLine("Video is uploaded...");
+            }
+        }
+
+        class WebServiceCall : ITask
+        {
+            public void Execute()
+            {
+                Console.WriteLine("Calling Web Service...");
+            }
+        }
+
+        class SendEmail : ITask
+        {
+            public void Execute()
+            {
+                Console.WriteLine("Send Email...");
+            }
+        }
+
+        public class WorkflowEngine
+        {
+            public void Run(IWorkflow workflow)
+            {
+                foreach (ITask I in workflow.GetTasks())
+                {
+                    I.Execute();
+                }
+            }
+        }
+
     }
 }
 
